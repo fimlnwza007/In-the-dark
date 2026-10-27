@@ -58,7 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.80884, 28.234707, 251.49
 script = ExtResource("7_ynf5e")
 surface_material = ExtResource("2_6bp64")
 biomes = SubResource("Resource_d1ilt")
-view_distance = 800.0
+view_distance = 120.0
 canyons_enabled = false
 mountains_enabled = false
 
@@ -120,7 +120,7 @@ shadow_bias = 0.04
 shadow_normal_bias = 1.4
 directional_shadow_split_1 = 0.06
 directional_shadow_blend_splits = true
-directional_shadow_max_distance = 220.0
+directional_shadow_max_distance = 80.0
 
 [node name="Fill_Sky" type="DirectionalLight3D" parent="__EA_ENVIRONMENT__" unique_id=976221442]
 transform = Transform3D(0.5, 0, 0.866025, 0.764655, 0.469472, -0.441474, -0.406574, 0.882948, 0.234736, 0, 60, 0)
