@@ -1,10 +1,10 @@
 extends Node
 
 func _ready() -> void:
-	if OS.get_name() in ["Android", "iOS"]:
-		_apply_mobile_settings()
+	_apply_mobile_settings()
 
 func _apply_mobile_settings() -> void:
+	get_viewport().scaling_3d_scale = 0.4
 	# ลด shadow distance
 	RenderingServer.directional_shadow_atlas_set_size(1024, true)
 	
@@ -13,7 +13,7 @@ func _apply_mobile_settings() -> void:
 	if env:
 		env.glow_enabled = false
 		env.volumetric_fog_enabled = false
-		env.directional_shadow_max_distance = 60.0
+		#env.directional_shadow_max_distance = 60.0
 	
 	# ปรับ terrain view distance
 	var terrain = get_node_or_null("/root/main/ChunkTerrain")

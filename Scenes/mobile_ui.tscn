@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bbdbet521bh2j"]
+
+[ext_resource type="Script" uid="uid://b6wg3822oo1mu" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="1_b6v5g"]
+[ext_resource type="Script" uid="uid://dua2nxkard2mx" path="res://Scripts/touch_look_zone.gd" id="2_c8k3e"]
+
+[node name="mobile ui" type="Control" unique_id=87150467]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1941854274]
+
+[node name="joystick" type="Control" parent="CanvasLayer" unique_id=1079269405]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 236.0
+offset_top = -205.0
+offset_right = 276.0
+offset_bottom = -165.0
+grow_vertical = 0
+script = ExtResource("1_b6v5g")
+
+[node name="TouchLookZone" type="Control" parent="CanvasLayer" unique_id=1849182741]
+layout_mode = 3
+anchors_preset = 15
+anchor_left = 0.4
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("2_c8k3e")

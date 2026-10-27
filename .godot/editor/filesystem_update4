@@ -1,3 +1,9 @@
 res://Scenes/main.tscn
 res://Shaders/psx_material.gdshader
 res://Scripts/auto_load.gd
+res://Player/Player.tscn
+res://Prefabs/Bridge_prefab.tscn
+res://Prefabs/mobile_ui.tscn
+res://Player/player.gd
+res://addons/touch_screen_joystick/touch_screen_joystick.gd
+res://Scenes/mobile_ui.tscn

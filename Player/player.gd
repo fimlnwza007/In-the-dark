@@ -83,6 +83,7 @@ extends CharacterBody3D
 @onready var _head: Node3D = $Head
 @onready var _camera: Camera3D = $Head/Camera3D
 @onready var _shape: CollisionShape3D = $Collision
+@onready var joystick: Control = $"mobile ui/CanvasLayer/joystick"
 
 ## Eye height and capsule at human size; world_scale multiplies both.
 const EYE_HEIGHT := 1.65
@@ -153,14 +154,21 @@ func _rescale() -> void:
 		_camera.near = 0.2 * s
 
 
+## หมุนกล้องและตัวละครตามการลาก/ขยับเมาส์ (ใช้ได้ทั้ง Mouse และ Touch)
+func rotate_look(relative: Vector2, sens_mult: float = 1.0) -> void:
+	var sens: float = mouse_sensitivity * sens_mult
+	rotate_y(-deg_to_rad(relative.x * sens))
+	if _head:
+		_head.rotation.x = clampf(
+				_head.rotation.x - deg_to_rad(relative.y * sens),
+				-deg_to_rad(pitch_limit), deg_to_rad(pitch_limit))
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		# Yaw turns the whole body, pitch only the head. Rotating the body on both
 		# axes would tip the collision capsule over and the walker would sink.
-		rotate_y(-deg_to_rad(event.relative.x * mouse_sensitivity))
-		_head.rotation.x = clampf(
-				_head.rotation.x - deg_to_rad(event.relative.y * mouse_sensitivity),
-				-deg_to_rad(pitch_limit), deg_to_rad(pitch_limit))
+		rotate_look(event.relative)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = (Input.MOUSE_MODE_VISIBLE
 				if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
@@ -175,11 +183,16 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_key_pressed(KEY_SPACE):
 		velocity.y = jump_velocity * world_scale
 
-	var wish := Vector2(
-			float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
-			float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W)))
-	if wish.length_squared() > 1.0:
-		wish = wish.normalized()
+	# เช็คว่ามีการใช้งานจอยสติ๊กอยู่หรือไม่ ถ้ามีใช้ค่าจากจอย ถ้าไม่มีใช้คีย์บอร์ด WASD
+	var wish := Vector2.ZERO
+	if joystick and not joystick.is_in_deadzone():
+		wish = joystick.get_direction() * joystick.get_factor()
+	else:
+		wish = Vector2(
+				float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A)),
+				float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W)))
+		if wish.length_squared() > 1.0:
+			wish = wish.normalized()
 
 	var speed := (run_speed if Input.is_key_pressed(KEY_SHIFT) else walk_speed) * world_scale
 	var dir := (transform.basis * Vector3(wish.x, 0.0, wish.y))

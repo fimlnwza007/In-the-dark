@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bqwieyi300cgo"]
 
 [ext_resource type="Script" uid="uid://cxvvi7x0j4aak" path="res://Player/player.gd" id="1"]
+[ext_resource type="Script" uid="uid://b6wg3822oo1mu" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="2_q3lat"]
+[ext_resource type="Script" uid="uid://dua2nxkard2mx" path="res://Scripts/touch_look_zone.gd" id="3_v8xye"]
 
 [sub_resource type="CapsuleShape3D" id="Body"]
 radius = 0.9
@@ -24,6 +26,36 @@ near = 0.15
 far = 1800.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D" unique_id=1389839661]
-light_energy = 5.355
-spot_range = 89.66195
-spot_angle = 36.412468
+spot_range = 939.365
+
+[node name="mobile ui" type="Control" parent="." unique_id=87150467]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="mobile ui" unique_id=1941854274]
+
+[node name="joystick" type="Control" parent="mobile ui/CanvasLayer" unique_id=1079269405]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 236.0
+offset_top = -205.0
+offset_right = 276.0
+offset_bottom = -165.0
+grow_vertical = 0
+script = ExtResource("2_q3lat")
+
+[node name="TouchLookZone" type="Control" parent="mobile ui/CanvasLayer" unique_id=1849182741]
+layout_mode = 3
+anchor_left = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("3_v8xye")

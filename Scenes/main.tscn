@@ -2,18 +2,17 @@
 
 [ext_resource type="Material" uid="uid://cl2rjg3ntojc3" path="res://Materials/terrain.tres" id="2_6bp64"]
 [ext_resource type="Material" path="res://Materials/sky_psx.tres" id="6_d1ilt"]
-[ext_resource type="PackedScene" path="res://Prefabs/BigFence_prefab.tscn" id="6_wsu2k"]
 [ext_resource type="Material" path="res://Materials/psx_screen.tres" id="7_344ge"]
-[ext_resource type="PackedScene" uid="uid://bodmo123i5wub" path="res://Meshes/1_b3_first_left.glb" id="7_k12tt"]
 [ext_resource type="Script" path="res://addons/lite_terrain/chunk_terrain.gd" id="7_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://cgcafmwq2pwri" path="res://Meshes/1_b4_first_left.glb" id="8_h1bgf"]
 [ext_resource type="Script" path="res://addons/lite_terrain/terrain_biomes.gd" id="8_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bqwieyi300cgo" path="res://Player/Player.tscn" id="8_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://ch8vcvn5xq4uq" path="res://Prefabs/lamp_012.tscn" id="9_b3802"]
 [ext_resource type="PackedScene" uid="uid://6k2tbse5uvej" path="res://Meshes/Lamp_broken_01.glb" id="12_pdsj5"]
 [ext_resource type="PackedScene" uid="uid://0qbq5pt31ave" path="res://Meshes/Trunk_01.glb" id="13_ee4r6"]
 [ext_resource type="PackedScene" uid="uid://baj2v3p51ydaf" path="res://Meshes/Trunk_02.glb" id="14_gt3je"]
+[ext_resource type="PackedScene" uid="uid://dxylo083w1nhh" path="res://Prefabs/big_fence_prefab.tscn" id="14_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://b6ie6hbflxj6s" path="res://Meshes/gate_ball.glb" id="15_3pmx8"]
+[ext_resource type="PackedScene" uid="uid://cng22vpq3k81p" path="res://Prefabs/Bridge_prefab.tscn" id="17_hibaj"]
 
 [sub_resource type="Resource" id="Resource_d1ilt"]
 script = ExtResource("8_hptm8")
@@ -64,8 +63,10 @@ mountains_enabled = false
 
 [node name="PSXScreenPass" type="CanvasLayer" parent="." unique_id=1350988745]
 layer = -1
+visible = false
 
 [node name="PSXScreenRect" type="ColorRect" parent="PSXScreenPass" unique_id=197000689]
+visible = false
 material = ExtResource("7_344ge")
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,35 +75,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BigFence_prefab" parent="." unique_id=2055109874 instance=ExtResource("6_wsu2k")]
-transform = Transform3D(0.99904823, 0.0030427345, 0.043513134, 0, 0.9975641, -0.06975647, -0.043619387, 0.06969008, 0.99661463, -336.61642, 5.546917, 286.5358)
+[node name="lamp_017" parent="." unique_id=41752213 instance=ExtResource("9_b3802")]
+transform = Transform3D(0.6546484, 0, 0.75593346, 0, 1, 0, -0.75593346, 0, 0.6546484, -237.7007, 1.8108635, 275.9728)
 
-[node name="1_b3_first_left2" parent="." unique_id=960072384 instance=ExtResource("7_k12tt")]
-transform = Transform3D(0.99513155, 0.09826813, 0.0075216405, -0.098555565, 0.99222934, 0.075947225, -8.580151e-10, -0.07631877, 0.9970835, -293.77905, 5.803779, 280.43738)
+[node name="lamp_018" parent="." unique_id=1473525234 instance=ExtResource("9_b3802")]
+transform = Transform3D(0.8308096, 0, 0.5565567, 0, 1, 0, -0.5565567, 0, 0.8308096, -295.2542, 5.3074574, 232.32079)
 
-[node name="1_b4_first_left2" parent="." unique_id=2001762936 instance=ExtResource("8_h1bgf")]
-transform = Transform3D(0.20786048, 3.3910763e-10, -0.9781585, -0.04970956, 0.9987078, -0.010563373, 0.97689456, 0.05081954, 0.20759188, -270.0079, 4.059136, 266.81183)
-
-[node name="lamp_012" parent="." unique_id=1157666131 instance=ExtResource("9_b3802")]
-transform = Transform3D(-0.85293186, 0, -0.5220223, 0, 1, 0, 0.5220223, 0, -0.85293186, -273.8595, 5.3074574, 262.50854)
+[node name="lamp_020" parent="." unique_id=1520212572 instance=ExtResource("9_b3802")]
+transform = Transform3D(0.68935406, 0, -0.72442454, 0, 1, 0, 0.72442454, 0, 0.68935406, -305.7783, 6.493127, 278.21014)
 
 [node name="lamp_013" parent="." unique_id=1756972215 instance=ExtResource("9_b3802")]
-transform = Transform3D(0.22010162, 0, -0.975477, 0, 1, 0, 0.975477, 0, 0.22010162, -281.43967, 5.3558283, 237.57338)
-
-[node name="lamp_014" parent="." unique_id=1974179907 instance=ExtResource("9_b3802")]
-transform = Transform3D(0.55912066, 0, 0.8290863, 0, 1, 0, -0.8290863, 0, 0.55912066, -300.04276, 6.4074917, 280.32614)
+transform = Transform3D(0.22010162, 0, -0.975477, 0, 1, 0, 0.975477, 0, 0.22010162, -250.16496, 5.3558283, 240.38765)
 
 [node name="Lamp_broken_012" parent="." unique_id=475158868 instance=ExtResource("12_pdsj5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.11908, 0, 247.8248)
 
 [node name="Trunk_012" parent="." unique_id=1592271796 instance=ExtResource("13_ee4r6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -293.77075, 6.5573378, 263.8308)
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, -306.7702, 7.5929756, 272.1386)
 
 [node name="Trunk_022" parent="." unique_id=819261528 instance=ExtResource("14_gt3je")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -269.78674, 4.0922413, 273.68988)
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, -239.38911, 3.8563929, 248.5392)
 
 [node name="gate_ball2" parent="." unique_id=52770400 instance=ExtResource("15_3pmx8")]
-transform = Transform3D(0.9951074, 0.09879873, 0, -0.09879873, 0.9951074, 0, 0, 0, 1, -291.51694, 5.4952507, 245.05962)
+transform = Transform3D(1.7300502, 0.17176716, -0.19980496, -0.17289779, 1.7414379, 0, 0.19882737, 0.019740475, 1.7385561, -281.8149, 5.4952507, 238.77928)
 
 [node name="__EA_ENVIRONMENT__" type="Node3D" parent="." unique_id=813837101]
 
@@ -133,3 +128,9 @@ transform = Transform3D(0.469472, 0, 0.882948, 0.213604, 0.970296, -0.113575, -0
 light_color = Color(0.4, 0.42, 0.55, 1)
 light_energy = 0.5
 light_specular = 0.0
+
+[node name="BigFence_prefab" parent="." unique_id=1093435667 instance=ExtResource("14_jkdf5")]
+transform = Transform3D(0.76359344, -0.022771036, -0.64529586, 0.06804295, 0.99665135, 0.04534716, 0.6421026, -0.078534625, 0.7625856, -298.5845, 6.406873, 247.39928)
+
+[node name="Bridge_prefab" parent="." unique_id=529809275 instance=ExtResource("17_hibaj")]
+transform = Transform3D(1.68364, 0, -0.47734267, 0.018440688, 1.7486936, 0.06504233, 0.47698635, -0.06760596, 1.6823832, -246.5607, -1.3658271, 240.93921)

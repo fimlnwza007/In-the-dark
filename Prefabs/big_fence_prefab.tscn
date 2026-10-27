@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dxylo083w1nhh"]
+
+[ext_resource type="PackedScene" uid="uid://ctervwbx4i6f7" path="res://Meshes/big_fence_03.glb" id="1_qqho6"]
+[ext_resource type="PackedScene" uid="uid://buu85jla6iwql" path="res://Meshes/Curve_fence_leg_01.glb" id="2_omjck"]
+[ext_resource type="PackedScene" uid="uid://dqo5e07skwq3j" path="res://Meshes/Curve_fence_leg_02.glb" id="3_ym4o6"]
+[ext_resource type="PackedScene" uid="uid://b1f3dvqw8cfop" path="res://Meshes/peg_leg_03.glb" id="4_0l4gd"]
+[ext_resource type="PackedScene" uid="uid://bhke2ri2dcaq0" path="res://Meshes/big_fence_01.glb" id="5_14lht"]
+[ext_resource type="PackedScene" uid="uid://xp13yfsyit30" path="res://Meshes/big_fence_Leg_04.glb" id="6_rlcyw"]
+[ext_resource type="PackedScene" uid="uid://cvhx62lgr5r5p" path="res://Meshes/big_fence_02.glb" id="7_u0e1f"]
+[ext_resource type="PackedScene" uid="uid://yctrm1mb75eg" path="res://Meshes/big_fence_Leg_01.glb" id="8_pg74w"]
+
+[node name="BigFence_prefab" type="Node3D" unique_id=1093435667]
+
+[node name="big_fence_03" parent="." unique_id=27776456 instance=ExtResource("1_qqho6")]
+transform = Transform3D(-0.96631116, -3.7436836e-09, -0.25737622, 1.8626451e-09, 1.0000004, -2.1538801e-08, 0.25737625, -2.1292598e-08, -0.9663111, -2.3555949, 0.9645672, -6.2901835)
+
+[node name="Curve_fence_leg_01" parent="." unique_id=1512805977 instance=ExtResource("2_omjck")]
+transform = Transform3D(0.9074632, 0.41811147, -0.04114577, -8.561793e-09, -0.097935535, -0.995193, -0.42013097, 0.90310127, -0.08887291, 0.3670211, 1.0645672, -1.4567716)
+
+[node name="Curve_fence_leg_02" parent="." unique_id=1273911466 instance=ExtResource("3_ym4o6")]
+transform = Transform3D(0.90746313, -8.480586e-09, 0.42013106, 0, 1.0000004, 2.0185556e-08, -0.42013106, -1.8317666e-08, 0.90746313, -0.12041682, 0.9445685, 9.843692)
+
+[node name="peg_leg_03" parent="." unique_id=1453507671 instance=ExtResource("4_0l4gd")]
+transform = Transform3D(0.81119233, 0.40676427, 0.42013106, -0.44824308, 0.89391226, 2.4736983e-07, -0.37556013, -0.18832117, 0.90746313, 1.1451918, 2.4045684, -2.727463)
+
+[node name="big_fence_01" parent="." unique_id=1496039749 instance=ExtResource("5_14lht")]
+transform = Transform3D(0.90746313, -8.480586e-09, 0.42013106, 0, 1.0000004, 2.0185556e-08, -0.42013106, -1.8317666e-08, 0.90746313, 1.8020064, 0.8545683, 7.212418)
+
+[node name="big_fence_03 (1)" parent="." unique_id=1197075366 instance=ExtResource("1_qqho6")]
+transform = Transform3D(0.90746313, -8.480586e-09, 0.42013106, 0, 1.0000004, 2.0185556e-08, -0.42013106, -1.8317666e-08, 0.90746313, 4.22656, 0.73456836, 12.139906)
+
+[node name="big_fence_Leg_04 (1)" parent="." unique_id=1027393693 instance=ExtResource("6_rlcyw")]
+transform = Transform3D(0.90746313, -8.480586e-09, 0.42013106, 0, 1.0000004, 2.0185556e-08, -0.42013106, -1.8317666e-08, 0.90746313, -6.412398, 0.97456723, -13.267541)
+
+[node name="big_fence_02" parent="." unique_id=57529732 instance=ExtResource("7_u0e1f")]
+transform = Transform3D(0.90746313, -8.480586e-09, 0.42013106, 0, 1.0000004, 2.0185556e-08, -0.42013106, -1.8317666e-08, 0.90746313, 0.47190198, 0.72456837, 1.0071707)
+
+[node name="big_fence_Leg_04" parent="." unique_id=1756186365 instance=ExtResource("6_rlcyw")]
+transform = Transform3D(0.90746313, 0.41852134, 0.036743045, 0, 0.08745612, -0.9961684, -0.42013106, 0.9039863, 0.079363234, 3.4176607, 1.1245682, 2.585631)
+
+[node name="big_fence_Leg_01" parent="." unique_id=1014461636 instance=ExtResource("8_pg74w")]
+transform = Transform3D(0.90746313, -8.480586e-09, 0.42013106, 0, 1.0000004, 2.0185556e-08, -0.42013106, -1.8317666e-08, 0.90746313, -2.3534822, 0.9901582, -9.6893835)
