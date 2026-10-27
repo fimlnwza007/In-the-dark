@@ -35,6 +35,10 @@ enabled=PackedStringArray("res://addons/lite_terrain/plugin.cfg")
 
 movie_writer/mjpeg_quality=1.0
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
