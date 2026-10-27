@@ -90,6 +90,22 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_code_box"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.04, 0.07, 0.1, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.8, 0.25, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [node name="start_scene" type="Control" unique_id=1447861746]
 layout_mode = 3
 anchors_preset = 15
@@ -218,7 +234,7 @@ theme_override_constants/separation = 14
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
 theme_override_font_sizes/font_size = 22
-text = "สร้างห้อง (Host Server)"
+text = "สร้างห้องใหม่ (Create Room)"
 horizontal_alignment = 1
 
 [node name="NameLabel" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1559982200]
@@ -236,24 +252,23 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "กรอกชื่อผู้เล่น..."
 max_length = 20
 
-[node name="PortLabel" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1748698212]
+[node name="ServerLabel" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1748698212]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
-theme_override_font_sizes/font_size = 15
-text = "พอร์ต (Port):"
+theme_override_colors/font_color = Color(0.5, 0.6, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+text = "Signaling Server (จับคู่ห้อง):"
 
-[node name="HostPortInput" type="LineEdit" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=840376626]
+[node name="SignalingInput" type="LineEdit" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=840376626]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 46)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
-text = "7777"
-placeholder_text = "7777"
-max_length = 6
+text = "ws://localhost:9080"
+placeholder_text = "ws://localhost:9080 หรือ wss://... "
 
 [node name="Spacer" type="Control" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=575678131]
-custom_minimum_size = Vector2(0, 8)
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="StartHostBtn" type="Button" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1572481152]
@@ -264,7 +279,7 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "🚀  เปิดห้องรอเพื่อน (Create Room)"
+text = "🚀  สร้างห้องและรับรหัส (Create Room)"
 
 [node name="BackFromHostBtn" type="Button" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1528488759]
 custom_minimum_size = Vector2(0, 44)
@@ -291,7 +306,7 @@ theme_override_constants/separation = 14
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
 theme_override_font_sizes/font_size = 22
-text = "เข้าร่วมห้อง (Join Server)"
+text = "เข้าร่วมห้อง (Join Room)"
 horizontal_alignment = 1
 
 [node name="NameLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=135831590]
@@ -309,39 +324,25 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "กรอกชื่อผู้เล่น..."
 max_length = 20
 
-[node name="IPLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1439559566]
+[node name="CodeLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1439559566]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 15
-text = "IP Address ของ Host:"
+text = "รหัสห้อง 4 หลัก (Room Code):"
 
-[node name="JoinIPInput" type="LineEdit" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1346175382]
+[node name="JoinCodeInput" type="LineEdit" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1346175382]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 46)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
-text = "127.0.0.1"
-placeholder_text = "127.0.0.1 หรือ IP ในวง LAN"
-
-[node name="PortLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1017499023]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
-theme_override_font_sizes/font_size = 15
-text = "พอร์ต (Port):"
-
-[node name="JoinPortInput" type="LineEdit" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=222000414]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 46)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_input")
-text = "7777"
-placeholder_text = "7777"
+placeholder_text = "เช่น K8M2"
+alignment = 1
 max_length = 6
 
 [node name="Spacer" type="Control" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=725883325]
-custom_minimum_size = Vector2(0, 8)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="ConnectBtn" type="Button" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=343242705]
@@ -352,7 +353,7 @@ theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "🔗  เชื่อมต่อไปยังเซิร์ฟเวอร์ (Connect)"
+text = "🔗  เข้าร่วมห้อง (Join Room)"
 
 [node name="BackFromJoinBtn" type="Button" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=2116805703]
 custom_minimum_size = Vector2(0, 44)
@@ -373,13 +374,43 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
 [node name="VBox" type="VBoxContainer" parent="CanvasLayer/CenterBox/LobbyPanel" unique_id=255083753]
 layout_mode = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 12
 
 [node name="LobbyTitle" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1544589254]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
 theme_override_font_sizes/font_size = 22
 text = "ห้องรอผู้เล่น (Lobby)"
+horizontal_alignment = 1
+
+[node name="RoomCodeBox" type="PanelContainer" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=987654321]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_code_box")
+
+[node name="VBoxCode" type="VBoxContainer" parent="CanvasLayer/CenterBox/LobbyPanel/VBox/RoomCodeBox" unique_id=987654322]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CodeTitle" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox/RoomCodeBox/VBoxCode" unique_id=987654323]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "รหัสห้องสำหรับชวนเพื่อน (Room Code):"
+horizontal_alignment = 1
+
+[node name="RoomCodeLabel" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox/RoomCodeBox/VBoxCode" unique_id=987654324]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "----"
+horizontal_alignment = 1
+
+[node name="CodeHint" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox/RoomCodeBox/VBoxCode" unique_id=987654325]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.65, 0.75, 1)
+theme_override_font_sizes/font_size = 12
+text = "(ส่งรหัสนี้ให้เพื่อนพิมพ์ในหน้า 'เข้าร่วมห้อง')"
 horizontal_alignment = 1
 
 [node name="LobbyStatusLabel" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1334224245]
@@ -398,7 +429,7 @@ text = "รายชื่อผู้เล่นในห้อง:"
 
 [node name="PlayerList" type="ItemList" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1787848836]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 160)
+custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/panel = SubResource("StyleBoxFlat_input")

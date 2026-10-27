@@ -11,3 +11,4 @@ res://Scripts/touch_look_zone.gd
 res://Scenes/start_scene.tscn
 res://Scripts/start_menu.gd
 res://Scripts/network_manager.gd
+res://HOW_TO_RUN_SIGNALING.md
