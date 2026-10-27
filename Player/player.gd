@@ -107,7 +107,10 @@ func _ready() -> void:
 	_rest_height = _head.position.y
 	if snap_to_ground_on_start:
 		snap_to_ground()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if OS.get_name() not in ["Android", "iOS"]:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 ## Moves the walker down onto the first solid surface under the spawn point. Called
@@ -166,15 +169,15 @@ func rotate_look(relative: Vector2, sens_mult: float = 1.0) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		# Yaw turns the whole body, pitch only the head. Rotating the body on both
-		# axes would tip the collision capsule over and the walker would sink.
-		rotate_look(event.relative)
+		if OS.get_name() not in ["Android", "iOS"]:
+			rotate_look(event.relative)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = (Input.MOUSE_MODE_VISIBLE
 				if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 				else Input.MOUSE_MODE_CAPTURED)
 	elif event is InputEventMouseButton and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if OS.get_name() not in ["Android", "iOS"]:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _physics_process(delta: float) -> void:

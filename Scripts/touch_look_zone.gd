@@ -12,6 +12,7 @@ signal look_dragged(relative: Vector2)
 
 ## เก็บ ID ของนิ้วที่กำลังแตะควบคุมโซนนี้ (-1 คือไม่มีนิ้วแตะ)
 var _active_touch_index: int = -1
+var _last_touch_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	# ถ้าไม่ได้ระบุ target_player ให้ลองหาจาก parent hierarchy หรือใน scene
@@ -36,20 +37,29 @@ func _input(event: InputEvent) -> void:
 
 func _handle_touch(event: InputEventScreenTouch) -> void:
 	if event.pressed:
-		# แตะลงมา: ถ้านิ้วนี้แตะในโซนของตัวเอง และยังไม่มีนิ้วอื่นแตะอยู่
+		# แตะลงมา: ตรวจสอบว่ายังไม่มีนิ้วในโซนนี้ และตำแหน่งแตะอยู่ในโซนฝั่งขวา
 		if _active_touch_index == -1 and get_global_rect().has_point(event.position):
 			_active_touch_index = event.index
+			_last_touch_pos = event.position
 			get_viewport().set_input_as_handled()
 	else:
-		# ปล่อยนิ้ว: ถ้าเป็นนิ้วที่กำลังควบคุมโซนนี้ ให้รีเซ็ต
+		# ปล่อยนิ้ว: เฉพาะนิ้วที่ควบคุมโซนนี้เท่านั้น
 		if event.index == _active_touch_index:
 			_active_touch_index = -1
 			get_viewport().set_input_as_handled()
 
 func _handle_drag(event: InputEventScreenDrag) -> void:
-	# ป้องกัน Multi-touch: ดักรับเฉพาะนิ้วที่แตะเริ่มต้นจากโซนนี้เท่านั้น
+	# ป้องกัน Multi-touch: ดักรับเฉพาะนิ้วที่เริ่มต้นแตะจากโซนนี้เท่านั้น
 	if event.index == _active_touch_index:
-		var rel := event.relative
+		# คำนวณ delta เองจากตำแหน่งนิ้วนี้โดยเฉพาะ ป้องกันบั๊ก multi-touch jump / spike ใน Godot
+		var delta_pos := event.position - _last_touch_pos
+		_last_touch_pos = event.position
+
+		# Spike Filter: ป้องกันกรณีค่าพิกัดกระโดดข้ามจอผิดปกติใน 1 เฟรม
+		if delta_pos.length_squared() > 40000.0: # เกิน 200px ใน 1 เฟรม
+			return
+
+		var rel := delta_pos
 		if invert_x:
 			rel.x = -rel.x
 		if invert_y:

@@ -14,7 +14,7 @@ res://Materials/showroom_ground.tres::c3b499dc72cba4c4024cef34257dd96a::17930387
 res://Materials/sky_psx.tres::3bdcc8197896d12b2c12d263e232046e::1793038764::res://.godot/exported/133200997/export-990f5a4f4dc5a0c7a297cced40e19ed3-sky_psx.res
 res://Materials/terrain.tres::a68a6444a900b5a26585767f57b40e24::1793083514::res://.godot/exported/133200997/export-3e964dbe0352960580ddd1b8187b72e4-terrain.res
 res://Materials/wall.tres::7fb86a92eb6f886912641b4fd9d215ac::1793038764::res://.godot/exported/133200997/export-5ef3f7a47fb72eb4e0b62b677d3a1081-wall.res
-res://Player/Player.tscn::8119ef2257f08056f87549fabc6e6d4a::1793117214::res://.godot/exported/133200997/export-48b487cb3fbab0e0d627d8f8de2ba1d9-Player.scn
+res://Player/Player.tscn::c0ec27d0b844e571827f8d0e0f28acf8::1793117858::res://.godot/exported/133200997/export-48b487cb3fbab0e0d627d8f8de2ba1d9-Player.scn
 res://Prefabs/Bridge_prefab.tscn::dad5c162edd6a1d2efb612956e8b7a96::1793108596::res://.godot/exported/133200997/export-9c84929648e5d0f7dfe1c473ec056ce4-Bridge_prefab.scn
 res://Prefabs/CurveFence_prefab.tscn::b67d772a74f07385d8f7d7ae8d7a2531::1793038765::res://.godot/exported/133200997/export-5ee4a6301818f6bd3263693914e2e5f7-CurveFence_prefab.scn
 res://Prefabs/fence_03.tscn::82a064fa05f26b71e0f98dd8b0bfbcf4::1793038765::res://.godot/exported/133200997/export-8854a66bd31b7edfe287eabe1aae5843-fence_03.scn
@@ -29,4 +29,4 @@ res://Scenes/Demo.tscn::f1151052dfc23b5a6b657bd5621f772c::1793082848::res://.god
 res://Scenes/main.tscn::0fb752123d942a4286eba1a537b20771::1793109237::res://.godot/exported/133200997/export-2ddd04d543d5858e7f20c9299a8b5096-main.scn
 res://Scenes/ShowroomAssets.tscn::045bd52fe6d29167ff5292341733b004::1793038765::res://.godot/exported/133200997/export-9f1535451d0ef6100a49d40b4f8708bc-ShowroomAssets.scn
 res://Prefabs/big_fence_prefab.tscn::30a26bfeac7d45469b2e27028209f66b::1793091548::res://.godot/exported/133200997/export-a7e118847c347de87035fa19abeed40c-big_fence_prefab.scn
-res://Scenes/mobile_ui.tscn::6538020811a19f2b7be7c0d1025a101b::1793111501::res://.godot/exported/133200997/export-939975d7ad697adea66893540a07db1a-mobile_ui.scn
+res://Scenes/mobile_ui.tscn::81280e389433c806f353878a0af2ea74::1793117878::res://.godot/exported/133200997/export-939975d7ad697adea66893540a07db1a-mobile_ui.scn

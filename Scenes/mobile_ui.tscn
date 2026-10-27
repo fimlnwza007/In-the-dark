@@ -28,7 +28,7 @@ script = ExtResource("1_b6v5g")
 [node name="TouchLookZone" type="Control" parent="CanvasLayer" unique_id=1849182741]
 layout_mode = 3
 anchors_preset = 15
-anchor_left = 0.4
+anchor_left = 0.5
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0

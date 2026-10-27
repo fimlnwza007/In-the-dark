@@ -52,10 +52,11 @@ script = ExtResource("2_q3lat")
 
 [node name="TouchLookZone" type="Control" parent="mobile ui/CanvasLayer" unique_id=1849182741]
 layout_mode = 3
-anchor_left = 0.4
+anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("3_v8xye")
+sensitivity = 1.0

@@ -180,11 +180,13 @@ func on_screen_touch(event : InputEventScreenTouch) -> void:
 	var center := global_position + (size / 2.0)
 	var has_point := event.position.distance_to(center) <= base_radius * maxf(scale.x, scale.y) or get_global_rect().has_point(event.position)
 	
-	if event.pressed and event_index == -1 and has_point:
-		event_index = event.index
-		touch_knob(event.position, event.index)
+	if event.pressed:
+		if event_index == -1 and has_point:
+			event_index = event.index
+			touch_knob(event.position, event.index)
 	else:
-		release_knob(event.index)
+		if event.index == event_index:
+			release_knob(event.index)
 		
 	
 

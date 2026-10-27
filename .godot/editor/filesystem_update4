@@ -7,3 +7,4 @@ res://Prefabs/mobile_ui.tscn
 res://Player/player.gd
 res://addons/touch_screen_joystick/touch_screen_joystick.gd
 res://Scenes/mobile_ui.tscn
+res://Scripts/touch_look_zone.gd
