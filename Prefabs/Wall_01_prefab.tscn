@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bxqrg6vejhxpp"]
+
+[ext_resource type="PackedScene" uid="uid://bbw4qhn8by2os" path="res://Meshes/01_wall_01_seamless.glb" id="1"]
+[ext_resource type="PackedScene" uid="uid://bcggbelnssec3" path="res://Meshes/02_wall_01_seamless.glb" id="2"]
+[ext_resource type="PackedScene" uid="uid://b7bul0c0ps4tl" path="res://Meshes/05_wall_01_seamless.glb" id="3"]
+[ext_resource type="PackedScene" uid="uid://74nuw5n8ja87" path="res://Meshes/03_wall_01_seamless.glb" id="4"]
+[ext_resource type="PackedScene" uid="uid://cpul7168brv3u" path="res://Meshes/04_wall_01_seamless.glb" id="5"]
+[ext_resource type="PackedScene" uid="uid://bgc0ed6rfiiel" path="res://Meshes/01_wall_01_end.glb" id="6"]
+[ext_resource type="PackedScene" uid="uid://bch7y13blxdvp" path="res://Meshes/01_wall_01_start.glb" id="7"]
+
+[node name="Wall_01_prefab" type="Node3D" unique_id=293384380]
+
+[node name="01_wall_01_seamless" parent="." unique_id=1356490967 instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, -29.3)
+
+[node name="02_wall_01_seamless" parent="." unique_id=2060754219 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, -13.3)
+
+[node name="05_wall_01_seamless" parent="." unique_id=300972380 instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 82.7)
+
+[node name="03_wall_01_seamless" parent="." unique_id=4259443 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 2.7)
+
+[node name="04_wall_01_seamless" parent="." unique_id=190398068 instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 66.7)
+
+[node name="03_wall_01_seamless (1)" parent="." unique_id=837863731 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 18.7)
+
+[node name="03_wall_01_seamless (3)" parent="." unique_id=641688214 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 50.7)
+
+[node name="01_wall_01_end" parent="." unique_id=1058885656 instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 82.7)
+
+[node name="03_wall_01_seamless (2)" parent="." unique_id=586423743 instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, 34.7)
+
+[node name="01_wall_01_start" parent="." unique_id=1557290806 instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.12, 1.97, -45.3)

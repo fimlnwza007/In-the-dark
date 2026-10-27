@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://d3cdq5vrc73v1"]
+
+[ext_resource type="Material" uid="uid://cl2rjg3ntojc3" path="res://Materials/terrain.tres" id="2_6bp64"]
+[ext_resource type="Material" path="res://Materials/sky_psx.tres" id="6_d1ilt"]
+[ext_resource type="PackedScene" path="res://Prefabs/BigFence_prefab.tscn" id="6_wsu2k"]
+[ext_resource type="Material" path="res://Materials/psx_screen.tres" id="7_344ge"]
+[ext_resource type="PackedScene" uid="uid://bodmo123i5wub" path="res://Meshes/1_b3_first_left.glb" id="7_k12tt"]
+[ext_resource type="Script" path="res://addons/lite_terrain/chunk_terrain.gd" id="7_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://cgcafmwq2pwri" path="res://Meshes/1_b4_first_left.glb" id="8_h1bgf"]
+[ext_resource type="Script" path="res://addons/lite_terrain/terrain_biomes.gd" id="8_hptm8"]
+[ext_resource type="PackedScene" uid="uid://bqwieyi300cgo" path="res://Player/Player.tscn" id="8_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://ch8vcvn5xq4uq" path="res://Prefabs/lamp_012.tscn" id="9_b3802"]
+[ext_resource type="PackedScene" uid="uid://6k2tbse5uvej" path="res://Meshes/Lamp_broken_01.glb" id="12_pdsj5"]
+[ext_resource type="PackedScene" uid="uid://0qbq5pt31ave" path="res://Meshes/Trunk_01.glb" id="13_ee4r6"]
+[ext_resource type="PackedScene" uid="uid://baj2v3p51ydaf" path="res://Meshes/Trunk_02.glb" id="14_gt3je"]
+[ext_resource type="PackedScene" uid="uid://b6ie6hbflxj6s" path="res://Meshes/gate_ball.glb" id="15_3pmx8"]
+
+[sub_resource type="Resource" id="Resource_d1ilt"]
+script = ExtResource("8_hptm8")
+
+[sub_resource type="Sky" id="Sky_o5jxe"]
+sky_material = ExtResource("6_d1ilt")
+
+[sub_resource type="Environment" id="Environment_wsu2k"]
+background_mode = 2
+sky = SubResource("Sky_o5jxe")
+ambient_light_source = 2
+ambient_light_color = Color(0.16, 0.2, 0.34, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 2.2
+tonemap_mode = 3
+tonemap_exposure = 2.14
+tonemap_white = 2.0
+glow_intensity = 0.15
+glow_strength = 0.9
+glow_bloom = 0.27
+glow_hdr_threshold = 1.7
+fog_light_color = Color(0.1, 0.12, 0.18, 1)
+fog_light_energy = 2.62
+fog_sun_scatter = 0.09
+fog_density = 0.007
+fog_aerial_perspective = 0.22
+fog_sky_affect = 0.35
+fog_height = -112.78
+volumetric_fog_density = 0.002
+volumetric_fog_albedo = Color(1, 0.73333335, 1, 1)
+volumetric_fog_anisotropy = 0.11
+adjustment_brightness = 0.96
+adjustment_contrast = 1.03
+adjustment_saturation = 1.12
+
+[node name="main" type="Node3D" unique_id=505258620]
+
+[node name="Player" parent="." unique_id=1939627474 instance=ExtResource("8_ynf5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -291.80884, 28.234707, 251.4919)
+
+[node name="ChunkTerrain" type="StaticBody3D" parent="." unique_id=1278483442]
+script = ExtResource("7_ynf5e")
+surface_material = ExtResource("2_6bp64")
+biomes = SubResource("Resource_d1ilt")
+view_distance = 800.0
+canyons_enabled = false
+mountains_enabled = false
+
+[node name="PSXScreenPass" type="CanvasLayer" parent="." unique_id=1350988745]
+layer = -1
+
+[node name="PSXScreenRect" type="ColorRect" parent="PSXScreenPass" unique_id=197000689]
+material = ExtResource("7_344ge")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BigFence_prefab" parent="." unique_id=2055109874 instance=ExtResource("6_wsu2k")]
+transform = Transform3D(0.99904823, 0.0030427345, 0.043513134, 0, 0.9975641, -0.06975647, -0.043619387, 0.06969008, 0.99661463, -336.61642, 5.546917, 286.5358)
+
+[node name="1_b3_first_left2" parent="." unique_id=960072384 instance=ExtResource("7_k12tt")]
+transform = Transform3D(0.99513155, 0.09826813, 0.0075216405, -0.098555565, 0.99222934, 0.075947225, -8.580151e-10, -0.07631877, 0.9970835, -293.77905, 5.803779, 280.43738)
+
+[node name="1_b4_first_left2" parent="." unique_id=2001762936 instance=ExtResource("8_h1bgf")]
+transform = Transform3D(0.20786048, 3.3910763e-10, -0.9781585, -0.04970956, 0.9987078, -0.010563373, 0.97689456, 0.05081954, 0.20759188, -270.0079, 4.059136, 266.81183)
+
+[node name="lamp_012" parent="." unique_id=1157666131 instance=ExtResource("9_b3802")]
+transform = Transform3D(-0.85293186, 0, -0.5220223, 0, 1, 0, 0.5220223, 0, -0.85293186, -273.8595, 5.3074574, 262.50854)
+
+[node name="lamp_013" parent="." unique_id=1756972215 instance=ExtResource("9_b3802")]
+transform = Transform3D(0.22010162, 0, -0.975477, 0, 1, 0, 0.975477, 0, 0.22010162, -281.43967, 5.3558283, 237.57338)
+
+[node name="lamp_014" parent="." unique_id=1974179907 instance=ExtResource("9_b3802")]
+transform = Transform3D(0.55912066, 0, 0.8290863, 0, 1, 0, -0.8290863, 0, 0.55912066, -300.04276, 6.4074917, 280.32614)
+
+[node name="Lamp_broken_012" parent="." unique_id=475158868 instance=ExtResource("12_pdsj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -277.11908, 0, 247.8248)
+
+[node name="Trunk_012" parent="." unique_id=1592271796 instance=ExtResource("13_ee4r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -293.77075, 6.5573378, 263.8308)
+
+[node name="Trunk_022" parent="." unique_id=819261528 instance=ExtResource("14_gt3je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -269.78674, 4.0922413, 273.68988)
+
+[node name="gate_ball2" parent="." unique_id=52770400 instance=ExtResource("15_3pmx8")]
+transform = Transform3D(0.9951074, 0.09879873, 0, -0.09879873, 0.9951074, 0, 0, 0, 1, -291.51694, 5.4952507, 245.05962)
+
+[node name="__EA_ENVIRONMENT__" type="Node3D" parent="." unique_id=813837101]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="__EA_ENVIRONMENT__" unique_id=1026630001]
+environment = SubResource("Environment_wsu2k")
+
+[node name="Sun" type="DirectionalLight3D" parent="__EA_ENVIRONMENT__" unique_id=1523274527]
+transform = Transform3D(-0.469472, 0, -0.882948, -0.153322, 0.984808, 0.081523, 0.869534, 0.173648, -0.462339, 0, 60, 0)
+light_color = Color(0.42, 0.52, 0.78, 1)
+light_energy = 0.28
+light_angular_distance = 1.2
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.04
+shadow_normal_bias = 1.4
+directional_shadow_split_1 = 0.06
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 220.0
+
+[node name="Fill_Sky" type="DirectionalLight3D" parent="__EA_ENVIRONMENT__" unique_id=976221442]
+transform = Transform3D(0.5, 0, 0.866025, 0.764655, 0.469472, -0.441474, -0.406574, 0.882948, 0.234736, 0, 60, 0)
+light_color = Color(0.46, 0.56, 0.78, 1)
+light_energy = 0.9
+light_specular = 0.0
+
+[node name="Fill_Back" type="DirectionalLight3D" parent="__EA_ENVIRONMENT__" unique_id=1602818642]
+transform = Transform3D(0.469472, 0, 0.882948, 0.213604, 0.970296, -0.113575, -0.85672, 0.241922, 0.455526, 0, 60, 0)
+light_color = Color(0.4, 0.42, 0.55, 1)
+light_energy = 0.5
+light_specular = 0.0

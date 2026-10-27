@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b8pc3snb6m8nv"]
+
+[ext_resource type="PackedScene" uid="uid://d1psetwtc7u3q" path="res://Meshes/2_road_01_start_downhill.glb" id="1"]
+[ext_resource type="PackedScene" uid="uid://dm4xs4vak1db1" path="res://Meshes/3_road_01_seamles.glb" id="2"]
+[ext_resource type="PackedScene" uid="uid://bq85nkuak7b2p" path="res://Meshes/1_road_01_start_uphill.glb" id="3"]
+
+[node name="Road_01" type="Node3D" unique_id=1956158875]
+
+[node name="2_road_01_start_downhill" parent="." unique_id=1378044820 instance=ExtResource("1")]
+
+[node name="3_road_01_seamles" parent="." unique_id=1883133286 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="3_road_01_seamles_2" parent="." unique_id=163659791 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="3_road_01_seamles_3" parent="." unique_id=661692130 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
+
+[node name="1_road_01_start_uphill" parent="." unique_id=1625610764 instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 0.987692, -0.15641, 0, 0.15641, 0.987692, 0, 0, 8)
+
+[node name="3_road_01_seamles_4" parent="." unique_id=1283252219 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 0.99976, 0.021916, 0, -0.021916, 0.99976, 0, -0.175, -47.998)
+
+[node name="3_road_01_seamles_5" parent="." unique_id=1470769373 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+
+[node name="3_road_01_seamles_6" parent="." unique_id=702677640 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)

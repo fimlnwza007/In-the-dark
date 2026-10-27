@@ -1,0 +1,90 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="In the dark"
+run/main_scene="uid://d3cdq5vrc73v1"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/lite_terrain/plugin.cfg")
+
+[filesystem]
+
+movie_writer/mjpeg_quality=1.0
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/size=2048
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+textures/default_filters/anisotropic_filtering_level=0
+lights_and_shadows/positional_shadow/atlas_size=2048
+textures/default_filters/texture_filter=0
+
+[shader_globals]
+
+psx_texture_resolution={
+"type": "float",
+"value": 256.0
+}
+psx_colour_levels={
+"type": "float",
+"value": 58.0
+}
+psx_vertex_snap={
+"type": "float",
+"value": 432.0
+}
+psx_affine_amount={
+"type": "float",
+"value": 0.39
+}
+psx_dither={
+"type": "float",
+"value": 1.0
+}
+psx_screen_height={
+"type": "float",
+"value": 360.0
+}
+world_haze={
+"type": "color",
+"value": Color(0.86, 0.8, 0.7, 1)
+}
+haze_range={
+"type": "vec4",
+"value": Vector4(150, 750, 0.85, 0)
+}
+sun_dir={
+"type": "vec4",
+"value": Vector4(0.836, 0.402, 0.374, 0)
+}
+ground_amb={
+"type": "vec4",
+"value": Vector4(0.24, 0.22, 0.19, 0)
+}
+ground_sun={
+"type": "vec4",
+"value": Vector4(1, 0.93, 0.8, 0)
+}
