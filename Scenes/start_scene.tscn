@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://b2pv2yxub3ote"]
 
 [ext_resource type="Script" uid="uid://bj334d8oubbtt" path="res://Scripts/start_menu.gd" id="1_82sop"]
+[ext_resource type="FontFile" uid="uid://lvd2k6naejeq" path="res://Fonts/NotoSansThai.ttf" id="2_thai_font"]
+
+[sub_resource type="Theme" id="Theme_thai"]
+default_font = ExtResource("2_thai_font")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.05, 0.07, 0.1, 1)
@@ -94,6 +98,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_thai")
 script = ExtResource("1_82sop")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=416399655]

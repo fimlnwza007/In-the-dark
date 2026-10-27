@@ -153,6 +153,9 @@ func _on_back_to_menu_pressed() -> void:
 
 func _on_start_host_btn_pressed() -> void:
 	print("[StartMenu] Start Host button clicked!")
+	if OS.has_feature("web"):
+		set_status("⚠️ บนเว็บบราวเซอร์ไม่สามารถเปิด Server ได้ กรุณาสร้างห้องจากเกมบน PC ครับ", true)
+		return
 	var name_text = host_name_input.text.strip_edges() if host_name_input else "Host"
 	var port_text = host_port_input.text.strip_edges() if host_port_input else "7777"
 	var port = port_text.to_int() if port_text.is_valid_int() else NetworkManager.DEFAULT_PORT
