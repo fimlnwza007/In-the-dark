@@ -8,3 +8,5 @@ res://Player/player.gd
 res://addons/touch_screen_joystick/touch_screen_joystick.gd
 res://Scenes/mobile_ui.tscn
 res://Scripts/touch_look_zone.gd
+res://Scenes/start_scene.tscn
+res://Scripts/start_menu.gd

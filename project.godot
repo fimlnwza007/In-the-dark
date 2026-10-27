@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="In the dark"
-run/main_scene="uid://d3cdq5vrc73v1"
+run/main_scene="res://Scenes/start_scene.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 AutoLoad="*uid://cmk4naoulqlyr"
+NetworkManager="*res://Scripts/network_manager.gd"
 
 [display]
 

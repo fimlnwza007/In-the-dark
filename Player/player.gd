@@ -102,15 +102,61 @@ var _sway_roll := 0.0
 ## Drop-outs left in the current burst - a bad contact rarely goes out just once.
 
 
+@onready var _body_mesh: MeshInstance3D = get_node_or_null("BodyMesh")
+@onready var _name_tag: Label3D = get_node_or_null("NameTag")
+
 func _ready() -> void:
 	_rescale()
 	_rest_height = _head.position.y
 	if snap_to_ground_on_start:
 		snap_to_ground()
-	if OS.get_name() not in ["Android", "iOS"]:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if name.is_valid_int():
+		setup_multiplayer(name.to_int())
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		setup_multiplayer(1)
+
+## ตั้งค่าระบบ Multiplayer สำหรับผู้เล่นนี้
+func setup_multiplayer(peer_id: int, p_name: String = "") -> void:
+	set_multiplayer_authority(peer_id)
+	
+	if _name_tag:
+		if p_name.is_empty():
+			if NetworkManager and NetworkManager.players.has(peer_id):
+				p_name = NetworkManager.players[peer_id].get("name", "Player")
+			else:
+				p_name = "Player %d" % peer_id
+		_name_tag.text = p_name
+
+	var is_local := is_multiplayer_authority()
+	
+	if _camera:
+		_camera.current = is_local
+	
+	if _name_tag:
+		_name_tag.visible = not is_local
+		
+	if _body_mesh:
+		if is_local:
+			_body_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
+		else:
+			_body_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+			_body_mesh.visible = true
+
+	var mobile_ui = get_node_or_null("mobile ui")
+	if mobile_ui:
+		if is_local:
+			mobile_ui.visible = true
+		else:
+			mobile_ui.visible = false
+			mobile_ui.queue_free()
+
+	if is_local:
+		if OS.get_name() not in ["Android", "iOS"]:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 
 ## Moves the walker down onto the first solid surface under the spawn point. Called
@@ -168,6 +214,8 @@ func rotate_look(relative: Vector2, sens_mult: float = 1.0) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not is_multiplayer_authority():
+		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if OS.get_name() not in ["Android", "iOS"]:
 			rotate_look(event.relative)
@@ -181,6 +229,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
 	if not is_on_floor():
 		velocity += get_gravity() * gravity_scale * world_scale * delta
 	elif Input.is_key_pressed(KEY_SPACE):

@@ -1,0 +1,444 @@
+[gd_scene format=3 uid="uid://b2pv2yxub3ote"]
+
+[ext_resource type="Script" uid="uid://bj334d8oubbtt" path="res://Scripts/start_menu.gd" id="1_82sop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.05, 0.07, 0.1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
+bg_color = Color(0.14, 0.18, 0.24, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.45, 0.55, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
+bg_color = Color(0.1, 0.14, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 0.8, 1, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 20.0
+content_margin_top = 14.0
+content_margin_right = 20.0
+content_margin_bottom = 14.0
+bg_color = Color(0.2, 0.28, 0.38, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.7, 0.9, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 32.0
+content_margin_top = 28.0
+content_margin_right = 32.0
+content_margin_bottom = 28.0
+bg_color = Color(0.09, 0.12, 0.16, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.32, 0.4, 0.7)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.06, 0.08, 0.12, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.35, 0.45, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="start_scene" type="Control" unique_id=1447861746]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_82sop")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=416399655]
+
+[node name="Background" type="Panel" parent="CanvasLayer" unique_id=48577249]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="HeaderContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1090240121]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 80.0
+offset_right = 400.0
+offset_bottom = 230.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="CanvasLayer/HeaderContainer" unique_id=1777466976]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 56
+text = "ALONE IN THE DUSK"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="CanvasLayer/HeaderContainer" unique_id=112286502]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.48, 0.65, 0.78, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+text = "— MULTIPLAYER CO-OP —"
+horizontal_alignment = 1
+
+[node name="CenterBox" type="CenterContainer" parent="CanvasLayer" unique_id=539078380]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -140.0
+offset_right = 300.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuPanel" type="VBoxContainer" parent="CanvasLayer/CenterBox" unique_id=1661424529]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SinglePlayerBtn" type="Button" parent="CanvasLayer/CenterBox/MainMenuPanel" unique_id=1924134861]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🎮  เล่นคนเดียว (Single Player)"
+
+[node name="HostGameBtn" type="Button" parent="CanvasLayer/CenterBox/MainMenuPanel" unique_id=1248355386]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🌐  สร้างห้อง (Host Game)"
+
+[node name="JoinGameBtn" type="Button" parent="CanvasLayer/CenterBox/MainMenuPanel" unique_id=355082066]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🔗  เข้าร่วมห้อง (Join Game)"
+
+[node name="QuitBtn" type="Button" parent="CanvasLayer/CenterBox/MainMenuPanel" unique_id=450056958]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "❌  ออกจากเกม (Quit)"
+
+[node name="HostPanel" type="PanelContainer" parent="CanvasLayer/CenterBox" unique_id=575007590]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(460, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/CenterBox/HostPanel" unique_id=1935744183]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="HostTitle" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1868579715]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 22
+text = "สร้างห้อง (Host Server)"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1559982200]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "ชื่อของคุณ:"
+
+[node name="HostNameInput" type="LineEdit" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1156606617]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "กรอกชื่อผู้เล่น..."
+max_length = 20
+
+[node name="PortLabel" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1748698212]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "พอร์ต (Port):"
+
+[node name="HostPortInput" type="LineEdit" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=840376626]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+text = "7777"
+placeholder_text = "7777"
+max_length = 6
+
+[node name="Spacer" type="Control" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=575678131]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="StartHostBtn" type="Button" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1572481152]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🚀  เปิดห้องรอเพื่อน (Create Room)"
+
+[node name="BackFromHostBtn" type="Button" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1528488759]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "ย้อนกลับ"
+
+[node name="JoinPanel" type="PanelContainer" parent="CanvasLayer/CenterBox" unique_id=1165629511]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(460, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/CenterBox/JoinPanel" unique_id=997768589]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="JoinTitle" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=216274048]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 22
+text = "เข้าร่วมห้อง (Join Server)"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=135831590]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "ชื่อของคุณ:"
+
+[node name="JoinNameInput" type="LineEdit" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=431960540]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+placeholder_text = "กรอกชื่อผู้เล่น..."
+max_length = 20
+
+[node name="IPLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1439559566]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "IP Address ของ Host:"
+
+[node name="JoinIPInput" type="LineEdit" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1346175382]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+text = "127.0.0.1"
+placeholder_text = "127.0.0.1 หรือ IP ในวง LAN"
+
+[node name="PortLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1017499023]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 15
+text = "พอร์ต (Port):"
+
+[node name="JoinPortInput" type="LineEdit" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=222000414]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
+text = "7777"
+placeholder_text = "7777"
+max_length = 6
+
+[node name="Spacer" type="Control" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=725883325]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ConnectBtn" type="Button" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=343242705]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🔗  เชื่อมต่อไปยังเซิร์ฟเวอร์ (Connect)"
+
+[node name="BackFromJoinBtn" type="Button" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=2116805703]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "ย้อนกลับ"
+
+[node name="LobbyPanel" type="PanelContainer" parent="CanvasLayer/CenterBox" unique_id=626645372]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/CenterBox/LobbyPanel" unique_id=255083753]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="LobbyTitle" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1544589254]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 22
+text = "ห้องรอผู้เล่น (Lobby)"
+horizontal_alignment = 1
+
+[node name="LobbyStatusLabel" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1334224245]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.85, 0.7, 1)
+theme_override_font_sizes/font_size = 15
+text = "กำลังรอผู้เล่น..."
+horizontal_alignment = 1
+
+[node name="PlayerListLabel" type="Label" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1180009338]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "รายชื่อผู้เล่นในห้อง:"
+
+[node name="PlayerList" type="ItemList" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1787848836]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/panel = SubResource("StyleBoxFlat_input")
+
+[node name="StartGameBtn" type="Button" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=307229311]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "▶  เริ่มเกมเลย (Start Game)"
+
+[node name="LeaveLobbyBtn" type="Button" parent="CanvasLayer/CenterBox/LobbyPanel/VBox" unique_id=1794322111]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "ออกจากห้อง"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer" unique_id=255393020]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -80.0
+offset_right = 400.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/CenterBox/MainMenuPanel/SinglePlayerBtn" to="." method="_on_single_player_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/MainMenuPanel/HostGameBtn" to="." method="_on_host_game_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/MainMenuPanel/JoinGameBtn" to="." method="_on_join_game_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/MainMenuPanel/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/HostPanel/VBox/StartHostBtn" to="." method="_on_start_host_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/HostPanel/VBox/BackFromHostBtn" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/JoinPanel/VBox/ConnectBtn" to="." method="_on_connect_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/JoinPanel/VBox/BackFromJoinBtn" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/LobbyPanel/VBox/StartGameBtn" to="." method="_on_start_game_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterBox/LobbyPanel/VBox/LeaveLobbyBtn" to="." method="_on_leave_lobby_btn_pressed"]

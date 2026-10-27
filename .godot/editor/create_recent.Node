@@ -1,5 +1,6 @@
-Control
+Label
 CanvasLayer
+Control
 StaticBody3D
 SpotLight3D
 ChunkTerrain
