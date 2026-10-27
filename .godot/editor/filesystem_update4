@@ -1,2 +1,3 @@
 res://Scenes/main.tscn
 res://Shaders/psx_material.gdshader
+res://Scripts/auto_load.gd
