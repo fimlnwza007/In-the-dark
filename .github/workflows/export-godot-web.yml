@@ -25,7 +25,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Download Godot 4.6
+      - name: Download Godot 4.6 editor
         shell: bash
         run: |
           set -euxo pipefail
@@ -42,6 +42,16 @@ jobs:
 
           ln -sf "$GODOT_BIN" "$GODOT_DIR/godot"
           echo "$GODOT_DIR" >> "$GITHUB_PATH"
+
+      - name: Download Godot export templates
+        shell: bash
+        run: |
+          set -euxo pipefail
+          TEMPLATE_DIR="$HOME/.local/share/godot/export_templates/4.6.stable"
+          mkdir -p "$TEMPLATE_DIR"
+
+          curl -L -o export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+          unzip -o export_templates.tpz -d "$TEMPLATE_DIR"
 
       - name: Export project to Web
         shell: bash
