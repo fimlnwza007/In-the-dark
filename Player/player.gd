@@ -106,10 +106,11 @@ var _touch_jump_requested: bool = false
 
 ## ตรวจสอบว่าอยู่บน mobile หรือไม่ รองรับทั้ง native Android/iOS และ Web-on-Mobile
 func is_mobile() -> bool:
+	if OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		return true
 	var os_name := OS.get_name()
 	if os_name in ["Android", "iOS"]:
 		return true
-	# Web บนมือถือ: ตรวจจาก DisplayServer
 	if os_name == "Web":
 		return DisplayServer.is_touchscreen_available()
 	return false
@@ -132,6 +133,9 @@ func _ready() -> void:
 ## ตั้งค่าระบบ Multiplayer สำหรับผู้เล่นนี้
 func setup_multiplayer(peer_id: int, p_name: String = "") -> void:
 	set_multiplayer_authority(peer_id)
+	var sync_node = get_node_or_null("ServerSynchronizer")
+	if sync_node:
+		sync_node.set_multiplayer_authority(peer_id)
 	
 	if _name_tag:
 		if p_name.is_empty():
@@ -158,7 +162,7 @@ func setup_multiplayer(peer_id: int, p_name: String = "") -> void:
 
 	var mobile_ui = get_node_or_null("mobile ui")
 	if mobile_ui:
-		if is_local:
+		if is_local and is_mobile():
 			mobile_ui.visible = true
 		else:
 			mobile_ui.visible = false

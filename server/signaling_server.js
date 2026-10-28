@@ -52,6 +52,12 @@ wss.on('connection', (ws) => {
 
         const action = data.action;
 
+        // Heartbeat ping / pong
+        if (action === 'ping') {
+            send(ws, { action: 'pong' });
+            return;
+        }
+
         // 1. Host creates a new room
         if (action === 'create_room') {
             let code = generateRoomCode();

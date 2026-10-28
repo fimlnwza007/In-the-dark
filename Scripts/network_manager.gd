@@ -42,6 +42,7 @@ var _ws: WebSocketPeer = null
 var _peer_connections: Dictionary = {} # peer_id -> WebRTCPeerConnection
 var _remote_desc_set: Dictionary = {}  # peer_id -> bool
 var _candidate_buffers: Dictionary = {} # peer_id -> Array
+var _heartbeat_timer: float = 0.0
 
 enum PendingAction { NONE, CREATE_ROOM, JOIN_ROOM }
 var _pending_action: PendingAction = PendingAction.NONE
@@ -54,13 +55,20 @@ func _ready() -> void:
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	# 1. Poll WebSocket
 	if _ws:
 		_ws.poll()
 		var state = _ws.get_ready_state()
 		if state == WebSocketPeer.STATE_OPEN:
 			if _pending_action != PendingAction.NONE:
 				_execute_pending_action()
+			
+			# Heartbeat ส่ง ping ทุก 20 วินาที ป้องกัน Render ตัดการเชื่อมต่อ
+			_heartbeat_timer += delta
+			if _heartbeat_timer >= 20.0:
+				_heartbeat_timer = 0.0
+				_send_signaling({ "action": "ping" })
 			
 			while _ws.get_available_packet_count() > 0:
 				var pkt = _ws.get_packet()
@@ -72,6 +80,12 @@ func _process(_delta: float) -> void:
 			if is_online and not rtc_peer:
 				status_message_updated.emit("ขาดการเชื่อมต่อกับ Signaling Server", true)
 				connection_failed.emit()
+	
+	# 2. สำคัญมาก: Poll ทุก WebRTCPeerConnection เพื่อแลกเปลี่ยน ICE Candidate และประมวลผลเน็ตเวิร์ก
+	for pid in _peer_connections:
+		var conn: WebRTCPeerConnection = _peer_connections[pid]
+		if conn:
+			conn.poll()
 
 func _execute_pending_action() -> void:
 	if _pending_action == PendingAction.CREATE_ROOM:
@@ -136,6 +150,8 @@ func _handle_signaling_message(data: Dictionary) -> void:
 	var action = data.get("action", "")
 	
 	match action:
+		"pong":
+			return
 		"room_created":
 			current_room_code = data.get("room_code", "")
 			my_peer_id = 1

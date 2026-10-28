@@ -3,3 +3,7 @@ res://Shaders/psx_material.gdshader
 res://Scripts/start_menu.gd
 res://Scenes/start_scene.tscn
 res://Scripts/network_manager.gd
+res://Player/Player.tscn
+res://Scripts/jump_button.gd
+res://Scripts/touch_look_zone.gd
+res://Player/player.gd

@@ -6,7 +6,7 @@ extends Control
 signal look_dragged(relative: Vector2)
 
 @export var target_player: CharacterBody3D = null
-@export_range(0.01, 2.0, 0.01) var sensitivity: float = 0.2
+@export_range(0.01, 5.0, 0.05) var sensitivity: float = 1.0
 @export var invert_x: bool = false
 @export var invert_y: bool = false
 
@@ -46,6 +46,14 @@ func _handle_touch(event: InputEventScreenTouch) -> void:
 		var ctrl_at = get_viewport().gui_get_hovered_control()
 		if ctrl_at and ctrl_at != self and not (ctrl_at is TouchLookZone):
 			return
+		
+		# ป้องกันการแย่งแตะปุ่ม JumpButton ใน mobile ui
+		var parent_node = get_parent()
+		if parent_node:
+			var jump_btn = parent_node.get_node_or_null("JumpButton")
+			if jump_btn and jump_btn is Control and jump_btn.is_visible_in_tree():
+				if jump_btn.get_global_rect().has_point(event.position):
+					return
 		if _active_touch_index == -1 and get_global_rect().has_point(event.position):
 			_active_touch_index = event.index
 			_last_touch_pos = event.position
