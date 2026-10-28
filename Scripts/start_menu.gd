@@ -135,12 +135,13 @@ func set_status(text: String, is_error: bool = false) -> void:
 # --- Button Handlers ---
 
 func _on_single_player_btn_pressed() -> void:
-	if _is_transitioning:
-		return
-	_is_transitioning = true
-	set_status("กำลังเข้าสู่เกม...", false)
-	var p_name = host_name_input.text if (host_name_input and not host_name_input.text.is_empty()) else "Player"
-	NetworkManager.start_singleplayer(p_name)
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	//if _is_transitioning:
+		//return
+	//_is_transitioning = true
+	//set_status("กำลังเข้าสู่เกม...", false)
+	//var p_name = host_name_input.text if (host_name_input and not host_name_input.text.is_empty()) else "Player"
+	//NetworkManager.start_singleplayer(p_name)
 
 func _on_host_game_btn_pressed() -> void:
 	set_status("")
