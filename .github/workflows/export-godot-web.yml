@@ -1,0 +1,61 @@
+name: Export Godot Web
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  export-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Download Godot 4.6
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p "$RUNNER_TEMP/godot"
+          cd "$RUNNER_TEMP/godot"
+          curl -L -o godot.zip https://github.com/godotengine/godot-builds/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+          unzip -o godot.zip
+          chmod +x Godot_v4.6-stable_linux.x86_64
+          echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
+
+      - name: Export project to Web
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/docs"
+          godot --headless --path "$GITHUB_WORKSPACE" --export-release "Web" "$GITHUB_WORKSPACE/docs/index.html"
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: export-web
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
