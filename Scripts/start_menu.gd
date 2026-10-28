@@ -113,8 +113,6 @@ func _setup_mobile_inputs() -> void:
 func _on_line_edit_gui_input(event: InputEvent, le: LineEdit) -> void:
 	if event is InputEventScreenTouch and event.pressed:
 		le.grab_focus()
-		DisplayServer.virtual_keyboard_show(le.text, Rect2(), DisplayServer.KEYBOARD_TYPE_DEFAULT, -1, le.max_length, le.caret_column)
-		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		le.grab_focus()
 
