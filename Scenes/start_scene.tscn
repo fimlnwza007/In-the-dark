@@ -81,8 +81,6 @@ content_margin_right = 14.0
 content_margin_bottom = 10.0
 bg_color = Color(0.06, 0.08, 0.12, 0.9)
 border_width_left = 1
-
-
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
@@ -253,6 +251,7 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "กรอกชื่อผู้เล่น..."
 max_length = 20
+virtual_keyboard_show_on_focus = false
 
 [node name="ServerLabel" type="Label" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=1748698212]
 layout_mode = 2
@@ -325,6 +324,7 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "กรอกชื่อผู้เล่น..."
 max_length = 20
+virtual_keyboard_show_on_focus = false
 
 [node name="CodeLabel" type="Label" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=1439559566]
 layout_mode = 2
@@ -342,6 +342,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "เช่น K8M2"
 alignment = 1
 max_length = 6
+virtual_keyboard_show_on_focus = false
 
 [node name="Spacer" type="Control" parent="CanvasLayer/CenterBox/JoinPanel/VBox" unique_id=725883325]
 custom_minimum_size = Vector2(0, 6)
