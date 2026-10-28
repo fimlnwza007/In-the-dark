@@ -101,6 +101,19 @@ var _sway_roll := 0.0
 ## Every dozen seconds or so the hand RESTS - it stands completely still for a moment.
 ## Drop-outs left in the current burst - a bad contact rarely goes out just once.
 
+## Flag สำหรับรับสัญญาณ jump จากปุ่ม touch (เรียกจาก mobile_ui)
+var _touch_jump_requested: bool = false
+
+## ตรวจสอบว่าอยู่บน mobile หรือไม่ รองรับทั้ง native Android/iOS และ Web-on-Mobile
+func is_mobile() -> bool:
+	var os_name := OS.get_name()
+	if os_name in ["Android", "iOS"]:
+		return true
+	# Web บนมือถือ: ตรวจจาก DisplayServer
+	if os_name == "Web":
+		return DisplayServer.is_touchscreen_available()
+	return false
+
 
 @onready var _body_mesh: MeshInstance3D = get_node_or_null("BodyMesh")
 @onready var _name_tag: Label3D = get_node_or_null("NameTag")
@@ -152,7 +165,7 @@ func setup_multiplayer(peer_id: int, p_name: String = "") -> void:
 			mobile_ui.queue_free()
 
 	if is_local:
-		if OS.get_name() not in ["Android", "iOS"]:
+		if not is_mobile():
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -217,14 +230,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if OS.get_name() not in ["Android", "iOS"]:
+		if not is_mobile():
 			rotate_look(event.relative)
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = (Input.MOUSE_MODE_VISIBLE
 				if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 				else Input.MOUSE_MODE_CAPTURED)
 	elif event is InputEventMouseButton and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		if OS.get_name() not in ["Android", "iOS"]:
+		if not is_mobile():
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
@@ -233,8 +246,9 @@ func _physics_process(delta: float) -> void:
 		return
 	if not is_on_floor():
 		velocity += get_gravity() * gravity_scale * world_scale * delta
-	elif Input.is_key_pressed(KEY_SPACE):
+	elif Input.is_key_pressed(KEY_SPACE) or _touch_jump_requested:
 		velocity.y = jump_velocity * world_scale
+		_touch_jump_requested = false
 
 	# เช็คว่ามีการใช้งานจอยสติ๊กอยู่หรือไม่ ถ้ามีใช้ค่าจากจอย ถ้าไม่มีใช้คีย์บอร์ด WASD
 	var wish := Vector2.ZERO

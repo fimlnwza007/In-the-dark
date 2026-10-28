@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6wg3822oo1mu" path="res://addons/touch_screen_joystick/touch_screen_joystick.gd" id="1_b6v5g"]
 [ext_resource type="Script" uid="uid://dua2nxkard2mx" path="res://Scripts/touch_look_zone.gd" id="2_c8k3e"]
+[ext_resource type="Script" uid="uid://jump_btn_script" path="res://Scripts/jump_button.gd" id="3_jump"]
 
 [node name="mobile ui" type="Control" unique_id=87150467]
 layout_mode = 3
@@ -34,3 +35,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("2_c8k3e")
+
+[node name="JumpButton" type="Button" parent="CanvasLayer" unique_id=2847391055]
+layout_mode = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "JUMP"
+script = ExtResource("3_jump")
