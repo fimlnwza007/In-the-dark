@@ -20,7 +20,7 @@ const MAX_PLAYERS: int = 8
 # สามารถเปลี่ยน Signaling URL เป็นเซิร์ฟเวอร์บน Glitch / Render ได้ตามต้องการ
 # ถ้าเปิดทดสอบบนเครื่องตนเอง ให้ใช้ "ws://localhost:9080" หรือ "ws://127.0.0.1:9080"
 # ตัวอย่าง Production: "wss://alone-in-the-dusk.glitch.me"
-@export var signaling_server_url: String = "ws://localhost:9080"
+@export var signaling_server_url: String = "wss://in-the-dark-yj0r.onrender.com"
 
 const ICE_SERVERS = [
 	{ "urls": ["stun:stun.l.google.com:19302", "stun:stun1.l.google.com:19302"] }

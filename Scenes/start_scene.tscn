@@ -265,8 +265,8 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_input")
-text = "ws://localhost:9080"
-placeholder_text = "ws://localhost:9080 หรือ wss://... "
+text = "wss://in-the-dark-yj0r.onrender.com"
+placeholder_text = "wss://in-the-dark-yj0r.onrender.com"
 
 [node name="Spacer" type="Control" parent="CanvasLayer/CenterBox/HostPanel/VBox" unique_id=575678131]
 custom_minimum_size = Vector2(0, 4)

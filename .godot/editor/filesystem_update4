@@ -2,3 +2,4 @@ res://Prefabs/big_fence_prefab.tscn
 res://Shaders/psx_material.gdshader
 res://Scripts/start_menu.gd
 res://Scenes/start_scene.tscn
+res://Scripts/network_manager.gd
