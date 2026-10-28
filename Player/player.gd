@@ -106,14 +106,29 @@ var _touch_jump_requested: bool = false
 
 ## ตรวจสอบว่าอยู่บน mobile หรือไม่ รองรับทั้ง native Android/iOS และ Web-on-Mobile
 func is_mobile() -> bool:
-	if OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios"):
-		return true
 	var os_name := OS.get_name()
 	if os_name in ["Android", "iOS"]:
 		return true
 	if os_name == "Web":
-		return DisplayServer.is_touchscreen_available()
+		if OS.has_feature("mobile"):
+			return true
+		if ClassDB.class_exists("JavaScriptBridge"):
+			var is_touch = JavaScriptBridge.eval("Boolean(('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))")
+			if is_touch == true:
+				return true
+		if DisplayServer.is_touchscreen_available():
+			return true
 	return false
+
+## เปิด/ปิดการแสดงผล Mobile UI (ทั้ง Control และ CanvasLayer ภายใน)
+func set_mobile_ui_visible(show_ui: bool) -> void:
+	var mobile_ui = get_node_or_null("mobile ui")
+	if not mobile_ui:
+		return
+	mobile_ui.visible = show_ui
+	var canvas_layer = mobile_ui.get_node_or_null("CanvasLayer")
+	if canvas_layer:
+		canvas_layer.visible = show_ui
 
 
 @onready var _body_mesh: MeshInstance3D = get_node_or_null("BodyMesh")
@@ -162,17 +177,16 @@ func setup_multiplayer(peer_id: int, p_name: String = "") -> void:
 
 	var mobile_ui = get_node_or_null("mobile ui")
 	if mobile_ui:
-		if is_local and is_mobile():
-			mobile_ui.visible = true
+		if is_local:
+			var mobile := is_mobile()
+			set_mobile_ui_visible(mobile)
+			if mobile:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
-			mobile_ui.visible = false
+			set_mobile_ui_visible(false)
 			mobile_ui.queue_free()
-
-	if is_local:
-		if not is_mobile():
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 
@@ -233,6 +247,11 @@ func rotate_look(relative: Vector2, sens_mult: float = 1.0) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return
+	
+	# ถ้าตรวจพบการสัมผัสหน้าจอ ให้แสดง Mobile UI อัตโนมัติทันที
+	if event is InputEventScreenTouch or event is InputEventScreenDrag:
+		set_mobile_ui_visible(true)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if not is_mobile():
 			rotate_look(event.relative)

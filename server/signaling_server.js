@@ -163,7 +163,18 @@ wss.on('connection', (ws) => {
             return;
         }
 
-        // 4. Leave room explicitly
+        // 4. Host starts the game: broadcast to all clients in the room
+        if (action === 'start_game') {
+            if (!currentRoom || !rooms.has(currentRoom) || !isHost) return;
+            const roomObj = rooms.get(currentRoom);
+            console.log(`[Game Started] Room ${currentRoom} started by Host`);
+            roomObj.clients.forEach((cWs) => {
+                send(cWs, { action: 'game_started' });
+            });
+            return;
+        }
+
+        // 5. Leave room explicitly
         if (action === 'leave_room') {
             handleDisconnect();
         }

@@ -7,3 +7,4 @@ res://Player/Player.tscn
 res://Scripts/jump_button.gd
 res://Scripts/touch_look_zone.gd
 res://Player/player.gd
+res://Scripts/main.gd

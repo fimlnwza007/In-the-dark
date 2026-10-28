@@ -38,13 +38,7 @@ func _input(event: InputEvent) -> void:
 func _handle_touch(event: InputEventScreenTouch) -> void:
 	if event.pressed:
 		# แตะลงมา: ตรวจสอบว่ายังไม่มีนิ้วในโซนนี้ และตำแหน่งแตะอยู่ในโซนฝั่งขวา
-		# ถ้ามี LineEdit หรือ TextEdit กำลัง focus อยู่ (แป้นพิมพ์ขึ้น) ให้ปล่อยผ่าน
-		var focused = get_viewport().gui_get_focus_owner()
-		if focused and (focused is LineEdit or focused is TextEdit):
-			return
-		# ถ้าตำแหน่งที่แตะมี Control อื่น (เช่น LineEdit, Button) อยู่ ให้ปล่อยผ่าน
-		var ctrl_at = get_viewport().gui_get_hovered_control()
-		if ctrl_at and ctrl_at != self and not (ctrl_at is TouchLookZone):
+		if _active_touch_index != -1 or not get_global_rect().has_point(event.position):
 			return
 		
 		# ป้องกันการแย่งแตะปุ่ม JumpButton ใน mobile ui
@@ -54,10 +48,10 @@ func _handle_touch(event: InputEventScreenTouch) -> void:
 			if jump_btn and jump_btn is Control and jump_btn.is_visible_in_tree():
 				if jump_btn.get_global_rect().has_point(event.position):
 					return
-		if _active_touch_index == -1 and get_global_rect().has_point(event.position):
-			_active_touch_index = event.index
-			_last_touch_pos = event.position
-			get_viewport().set_input_as_handled()
+		
+		_active_touch_index = event.index
+		_last_touch_pos = event.position
+		get_viewport().set_input_as_handled()
 	else:
 		# ปล่อยนิ้ว: เฉพาะนิ้วที่ควบคุมโซนนี้เท่านั้น
 		if event.index == _active_touch_index:

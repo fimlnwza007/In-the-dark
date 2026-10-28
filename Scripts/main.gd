@@ -37,6 +37,8 @@ func _ready() -> void:
 func _spawn_player_for_peer(peer_id: int) -> void:
 	if not multiplayer.is_server():
 		return
+	if players_container.has_node(str(peer_id)):
+		return
 	var player_data = {
 		"id": peer_id,
 		"name": NetworkManager.players.get(peer_id, {}).get("name", "Player %d" % peer_id)

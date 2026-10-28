@@ -152,6 +152,9 @@ func _handle_signaling_message(data: Dictionary) -> void:
 	match action:
 		"pong":
 			return
+		"game_started":
+			print("[NetworkManager] Received game_started from Signaling Server!")
+			start_game()
 		"room_created":
 			current_room_code = data.get("room_code", "")
 			my_peer_id = 1
@@ -379,10 +382,14 @@ func close_connection() -> void:
 func request_start_game() -> void:
 	if not multiplayer.is_server():
 		return
+	# ส่งสัญญาณเริ่มเกมผ่านทั้ง Signaling Server และ Multiplayer RPC เพื่อความแน่นอน 100%
+	_send_signaling({ "action": "start_game" })
 	start_game.rpc()
 
 @rpc("authority", "call_local", "reliable")
 func start_game() -> void:
+	if get_tree().current_scene and get_tree().current_scene.scene_file_path == "res://Scenes/main.tscn":
+		return
 	status_message_updated.emit("กำลังโหลดฉากเกม...", false)
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
