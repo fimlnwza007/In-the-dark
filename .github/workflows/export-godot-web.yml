@@ -50,15 +50,32 @@ jobs:
           TEMPLATE_DIR="$HOME/.local/share/godot/export_templates/4.6.stable"
           mkdir -p "$TEMPLATE_DIR"
 
-          curl -L -o export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
-          unzip -o export_templates.tpz -d "$TEMPLATE_DIR"
+          curl -L -o export_templates.tpz \
+            https://github.com/godotengine/godot-builds/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz
+
+          # .tpz = zip ที่มี folder "templates/" ข้างใน — ต้องแตกแล้วย้ายไปยัง path ที่ถูกต้อง
+          unzip -o export_templates.tpz -d /tmp/godot_tpz
+          cp -r /tmp/godot_tpz/templates/. "$TEMPLATE_DIR/"
+          echo "Templates installed:"
+          ls "$TEMPLATE_DIR/" | grep web || true
+
+      - name: Import project (build .godot resource cache)
+        shell: bash
+        run: |
+          set -euxo pipefail
+          # รัน import รอบแรกเพื่อให้ Godot build .godot cache ของ resources
+          # (ถ้าไม่ทำขั้นตอนนี้ export อาจพลาด resource บางตัว)
+          timeout 120 godot --headless --path "$GITHUB_WORKSPACE" --import 2>&1 | tail -30 || true
 
       - name: Export project to Web
         shell: bash
         run: |
           set -euxo pipefail
           mkdir -p "$GITHUB_WORKSPACE/docs"
-          godot --headless --path "$GITHUB_WORKSPACE" --export-release "Web" "$GITHUB_WORKSPACE/docs/index.html"
+          godot --headless --path "$GITHUB_WORKSPACE" \
+            --export-release "Web" "$GITHUB_WORKSPACE/docs/index.html"
+          echo "Export output:"
+          ls -lh "$GITHUB_WORKSPACE/docs/"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
