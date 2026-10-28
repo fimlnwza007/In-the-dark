@@ -47,6 +47,9 @@ func _ready() -> void:
 	# ผูกปุ่มกดทั้งหมดอย่างปลอดภัย
 	_connect_buttons()
 	
+	# รองรับมือถือ: เชื่อม LineEdit ทุกช่องให้เปิด virtual keyboard เมื่อกด
+	_setup_mobile_inputs()
+	
 	# เชื่อมต่อ Signals จาก NetworkManager
 	if not NetworkManager.room_created.is_connected(_on_room_created):
 		NetworkManager.room_created.connect(_on_room_created)
@@ -87,6 +90,33 @@ func _connect_buttons() -> void:
 			if not btn.pressed.is_connected(cb):
 				btn.pressed.connect(cb)
 			print("[StartMenu] Button bound: ", btn_name)
+
+## รองรับมือถือ: ให้ LineEdit ทุกช่องเปิด virtual keyboard เมื่อกด
+func _setup_mobile_inputs() -> void:
+	var inputs: Array[LineEdit] = []
+	if host_name_input:
+		inputs.append(host_name_input)
+	if signaling_input:
+		inputs.append(signaling_input)
+	if join_name_input:
+		inputs.append(join_name_input)
+	if join_code_input:
+		inputs.append(join_code_input)
+	
+	for le in inputs:
+		# เปิด virtual keyboard type ให้เหมาะสม
+		le.virtual_keyboard_enabled = true
+		# เมื่อกด LineEdit บนมือถือ ให้ grab_focus และ show keyboard
+		if not le.gui_input.is_connected(_on_line_edit_gui_input.bind(le)):
+			le.gui_input.connect(_on_line_edit_gui_input.bind(le))
+
+func _on_line_edit_gui_input(event: InputEvent, le: LineEdit) -> void:
+	if event is InputEventScreenTouch and event.pressed:
+		le.grab_focus()
+		DisplayServer.virtual_keyboard_show(le.text, Rect2(), DisplayServer.KEYBOARD_TYPE_DEFAULT, -1, le.max_length, le.caret_column)
+		get_viewport().set_input_as_handled()
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		le.grab_focus()
 
 func show_panel(target: Control) -> void:
 	if main_menu_panel:
